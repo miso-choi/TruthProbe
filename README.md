@@ -148,9 +148,6 @@ Check the following values inside the target script:
 * `AMPLIFY`
 * `--output_path`
 
-> [!IMPORTANT]
-> Some scripts may still contain machine-specific absolute paths, especially for `TRUTHFUL_HEAD_FILE`.
-> Update them to the corresponding paths in your local TruthProbe workspace before running inference.
 
 ## 📊 Outputs
 
@@ -160,10 +157,8 @@ By default, scripts write results under:
 LLaVA-NeXT/logs
 ```
 
-The output directory can be changed by modifying `--output_path` in each script.
+The results are saved as csv file for each model/task in `LLaVA-NeXT/logs/results_csv`.
 
-## 📌 Notes
+## Acknowledgements
 
-* Use the correct local `transformers` version for each model family.
-* Ensure that all local dataset paths are updated before running tasks that require local files.
-* For Hugging Face datasets and models, make sure your environment has network access and appropriate permissions.
+This work builds on the codebases of [LLaVA-NeXT](https://github.com/LLaVA-VL/LLaVA-NeXT), [lmms-eval](https://github.com/EvolvingLMMs-Lab/lmms-eval), and [Inference-Time Intervention / ITI](https://github.com/likenneth/honest_llama). We thank the authors and maintainers for making these resources publicly available.
