@@ -1,0 +1,5 @@
+group : pope_aokvqa_full
+task:
+  - pope_aokvqa_adv
+  - pope_aokvqa_pop
+  - pope_aokvqa_random

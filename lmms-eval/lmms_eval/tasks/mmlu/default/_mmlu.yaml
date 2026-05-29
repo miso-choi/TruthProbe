@@ -1,0 +1,13 @@
+group: mmlu
+task:
+  - mmlu_stem
+  - mmlu_other
+  - mmlu_social_sciences
+  - mmlu_humanities
+aggregate_metric_list:
+  - metric: acc
+    weight_by_size: True
+metadata:
+  version: 2
+  #head_masking: false
+  #여가 qwen reproducing 때문에 약간 수정

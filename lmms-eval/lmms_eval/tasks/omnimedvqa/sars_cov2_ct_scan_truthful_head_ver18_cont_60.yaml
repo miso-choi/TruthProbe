@@ -1,0 +1,41 @@
+dataset_path: /root/Desktop/workspace/miso/hub/datasets/lavis/omnimedvqa
+dataset_name: null
+dataset_kwargs:
+  data_files: {"default": "SARS_CoV_2_CT_scan_eval_500.jsonl"}
+  token: True
+task: "sars_cov2_ct_scan_truthful_head_ver18_cont_60"
+test_split: default
+output_type: generate_until
+process_docs: !function utils.process_docs
+doc_to_visual: !function utils.omnimedvqa_doc_to_visual
+doc_to_text: !function utils.omnimedvqa_doc_to_text
+doc_to_target: "answer"
+generation_kwargs:
+  max_new_tokens: 32
+  temperature: 0
+  top_p: 1.0
+  num_beams: 1
+  do_sample: false
+process_results: !function utils.omnimedvqa_process_results
+metric_list:
+  - metric: omnimedvqa_accuracy
+    aggregation: !function utils.omnimedvqa_aggregate_accuracy
+    higher_is_better: true
+lmms_eval_specific_kwargs:
+  default:
+    pre_prompt: "\nAnswer with only the letter of the correct option, or the exact option text."
+    post_prompt: ""
+    
+  plm:
+    pre_prompt: ""
+    post_prompt: "\nYour response must be concise."
+
+metadata:
+  version: 0.0
+  gate_truthful_head: true
+  
+  truthful_head: true
+  truthful_head_filepath: "/root/Desktop/workspace/miso/faithful-lmms-eval/notebooks/linear_probing_score/converted_score_cv5_head_metrics_mistral_7b_instruct_halueval_292.npy" # mistral-7b-instruct (halueval, 292개)
+
+  hyperparams:
+    contrast_amplifying_factor: 6.0

@@ -1,0 +1,42 @@
+# Generated experiment outputs
+LLaVA-NeXT/logs/
+LLaVA-NeXT/chair_outputs/
+
+
+
+# Local caches and build artifacts
+**/__pycache__/
+**/*.py[cod]
+**/*.egg-info/
+**/.cache/
+**/.ipynb_checkpoints/
+.cache/
+
+# Local UI/demo dependencies
+LLaVA-NeXT/node_modules/
+LLaVA-NeXT/.gradio/
+notebooks/.gradio/
+notebooks/demo_folder/
+
+# Local editor files
+.vscode/
+**/.vscode/
+
+# Secrets and local env files
+.env
+.env.*
+*.pem
+*.key
+credentials.json
+token.json
+private_config*.yaml
+private_config*.json
+*secret*
+
+# Nested benchmark result dumps
+lmms-eval/lmms_eval/tasks/**/result/
+
+
+# Model / data artifacts
+*.pt
+*.pth

@@ -1,0 +1,43 @@
+dataset_path: /root/Desktop/workspace/miso/hub/datasets/lavis/rlhf_v_augmented # lmms-lab/POPE
+dataset_name: null
+dataset_kwargs:
+  data_files: {"default": "annotations/annotations.jsonl"}
+  # data_files: "final_target_.jsonl"
+  token: True
+task: "attn_diff"
+test_split: default 
+output_type: generate_until
+doc_to_visual: !function utils.attn_diff_doc_to_visual
+doc_to_text: !function utils.attn_diff_doc_to_text
+doc_to_target: "answer"
+generation_kwargs:
+  max_new_tokens: 1
+  temperature: 0
+  top_p: 0
+  num_beams: 1
+  do_sample: false
+process_results: !function utils.attn_diff_process_results
+metric_list:
+  - metric: attn_diff_save
+    aggregation: !function utils.attn_diff_save_aggregation
+    higher_is_better: true
+lmms_eval_specific_kwargs:
+  default:
+    pre_prompt: ""
+    post_prompt: ""
+  plm:
+    pre_prompt: ""
+    post_prompt: ""
+metadata:
+  version: 0.0
+  # Head masking configuration
+  head_masking: true
+  head_masking_start_layer: 0
+  head_masking_end_layer: 6
+  head_masking_start_head: 0
+  head_masking_end_head: 31
+  mask_qkv: ['q']
+  mask_scale_factor: 1e-5
+  return_dict_in_generate: true
+  output_attentions: true
+  output_dir: /root/Desktop/workspace/miso/faithful-lmms-eval/LLaVA-NeXT/logs

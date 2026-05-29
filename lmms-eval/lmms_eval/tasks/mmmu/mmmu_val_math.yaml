@@ -1,0 +1,25 @@
+# Math only. ``lmms-lab/MMMU`` has HF config ``default`` only — subject is selected via ``process_docs``
+# (ids like ``validation_Math_0``). To load the official per-subject HF config instead, use
+# ``dataset_path: MMMU/MMMU`` + ``dataset_name: Math`` and remove ``process_docs``.
+dataset_path: lmms-lab/MMMU
+task: "mmmu_val_math"
+test_split: validation
+output_type: generate_until
+process_docs: !function utils.process_docs_mmmu_math
+doc_to_visual: !function utils.mmmu_doc_to_visual
+doc_to_text: !function utils.mmmu_doc_to_text
+doc_to_target: "answer"
+process_results: !function utils.mmmu_process_results
+
+metric_list:
+  - metric: mmmu_acc
+    aggregation: !function utils.mmmu_aggregate_results
+    higher_is_better: true
+
+lmms_eval_specific_kwargs:
+  default:
+    prompt_type: "format"
+    multiple_choice_prompt: "Answer with the option's letter from the given choices directly."
+    open_ended_prompt: "Answer the question using a single word or phrase."
+
+include: _default_template_yaml
