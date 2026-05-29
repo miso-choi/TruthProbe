@@ -2,7 +2,10 @@ export HF_HOME=/workspace/.cache/huggingface
 export HUGGINGFACE_HUB_CACHE=/workspace/.cache/huggingface/hub
 export HF_DATASETS_CACHE=/workspace/.cache/huggingface/datasets
 export TRANSFORMERS_CACHE=/workspace/.cache/huggingface/transformers
-export LOCAL_DATA_ROOT=/root/Desktop/workspace/miso/hub/datasets/lavis
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+REPO_ROOT="$(cd "${SCRIPT_DIR}/../../.." && pwd)"
+TRUTH_SCORES_DIR="${REPO_ROOT}/truth_scores"
+export LOCAL_DATA_ROOT="${LOCAL_DATA_ROOT:-${REPO_ROOT}/data}"
 
 # Base task yaml: lmms_eval/tasks/halueval_remain/halueval_remain.yaml
 # Runtime task name/result key: ${TASK_ALIAS}
@@ -26,7 +29,7 @@ python3 -m accelerate.commands.launch \
 
 
 TASK_ALIAS="halueval_truthful_head_truth_basellm_baseLLM_cont_6p0"
-TRUTHFUL_HEAD_FILE="/root/Desktop/workspace/miso/faithful-lmms-eval/notebooks/linear_probing_score/converted_score_cv5_head_metrics_qwen2.5_halueval_292.npy"
+TRUTHFUL_HEAD_FILE="${TRUTH_SCORES_DIR}/converted_score_cv5_head_metrics_qwen2.5_halueval_292.npy"
 AMPLIFY="6.0"
 TASK_METADATA_ARGS="gate_truthful_head=true,truthful_head=true,truthful_head_filepath=${TRUTHFUL_HEAD_FILE},hyperparams.contrast_amplifying_factor=${AMPLIFY}"
 

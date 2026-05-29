@@ -76,7 +76,9 @@ TruthProbe currently uses the following tasks:
 * `chair` (max_new_tokens is set to 64)
 
 Place the `data` directory in a location that can store the inference datasets
-(e.g., COCO val2014 images are about 6 GB), then set `LOCAL_DATA_ROOT` to that location:
+(e.g., COCO val2014 images are about 6 GB). The run scripts use
+`<repo-root>/data` by default. If you place `data` somewhere else, set
+`LOCAL_DATA_ROOT` to that location before running inference:
 
 ```bash
 export LOCAL_DATA_ROOT=/path/to/data
@@ -87,64 +89,25 @@ Download the Val 2014 images from the official COCO website and place them under
 
 ## 🚀 Inference
 
+```bash
+conda activate truthprobe
+cd TruthProbe/LLaVA-NeXT
+```
+
 Inference scripts are located under:
 
 ```bash
 LLaVA-NeXT/run_scripts
 ```
 
-Activate the conda environment and move to the `LLaVA-NeXT` directory before running scripts:
-
-```bash
-conda activate truthprobe
-cd TruthProbe/LLaVA-NeXT
-```
-
-### Script layout
-
-| Benchmark   | Script directory          |
-| ----------- | ------------------------- |
-| CHAIR       | `run_scripts/chair`       |
-| POPE-COCO   | `run_scripts/pope_coco`   |
-| POPE-AOKVQA | `run_scripts/pope_aokvqa` |
-| HaluEval    | `run_scripts/halueval`    |
-
-Example scripts:
-
-```bash
-run_scripts/chair/qwen2_5_vl_instruct.sh
-run_scripts/chair/qwen2_5_vl_omni.sh
-run_scripts/chair/llava15.sh
-run_scripts/pope_coco/qwen2_5_vl_instruct.sh
-run_scripts/pope_aokvqa/llava_next.sh
-run_scripts/halueval/vicuna_7b.sh
-```
-
-Some benchmark directories also include `all.sh`, which runs selected scripts within the directory.
-
 ### Run a script
 
-For example, to run Qwen2.5-VL-Instruct on CHAIR:
+For example, to run Qwen2.5-VL-Instruct on POPE:
 
 ```bash
-bash run_scripts/chair/qwen2_5_vl_instruct.sh
+bash run_scripts/pope/qwen2_5_vl_instruct.sh
 ```
 
-Most scripts run `lmms_eval` through `accelerate`:
-
-```bash
-python3 -m accelerate.commands.launch \
-    --num_processes=1 \
-    -m lmms_eval \
-    --model <model_name> \
-    --model_args pretrained=<huggingface_model_id>,attn_implementation=eager \
-    --tasks <task_name> \
-    --task_alias "${TASK_ALIAS}" \
-    --batch_size 1 \
-    --log_samples \
-    --output_path ./logs/ \
-    --process_with_media
-```
 
 ## 🧪 TruthProbe Modes
 
