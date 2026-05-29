@@ -76,7 +76,7 @@ TruthProbe currently uses the following tasks:
 * `chair` (max_new_tokens is set to 64)
 
 Place the `data` directory in a location that can store the inference datasets
-(about 6 GB), then set `LOCAL_DATA_ROOT` to that location:
+(e.g., COCO val2014 images are about 6 GB), then set `LOCAL_DATA_ROOT` to that location:
 
 ```bash
 export LOCAL_DATA_ROOT=/path/to/data
