@@ -70,117 +70,20 @@ pip install qwen_vl_utils audioread librosa moviepy qwen_omni_utils
 
 TruthProbe currently uses the following tasks:
 
-* `halueval_remain`
+* `halueval` (samples used for probing are excluded)
 * `pope`
 * `pope_aokvqa`
-* `chair_max64`
+* `chair` (max_new_tokens is set to 64)
 
-Use `LOCAL_DATA_ROOT` as the root directory for local datasets:
+Place the `data` directory in a location that can store the inference datasets
+(about 6 GB), then set `LOCAL_DATA_ROOT` to that location:
 
 ```bash
-LOCAL_DATA_ROOT=/path/to/local/datasets/lavis
+export LOCAL_DATA_ROOT=/path/to/data
 ```
 
-Some task YAML files may contain machine-specific `dataset_path` values.
-Before running evaluation on a new machine, update each YAML file to point to the correct local dataset path.
-
-### Automatically downloaded dataset
-
-The standard POPE task uses the Hugging Face dataset below:
-
-```yaml
-dataset_path: lmms-lab/POPE
-```
-
-This dataset is automatically downloaded by the Hugging Face `datasets` library when running `lmms-eval`, assuming network access and appropriate permissions.
-
-Related task:
-
-```text
-pope
-```
-
-### Local datasets
-
-The following datasets should be prepared locally.
-
-#### HaluEval Remain
-
-Related task:
-
-```text
-halueval_remain
-```
-
-Expected structure:
-
-```text
-${LOCAL_DATA_ROOT}/halueval_eval_9708/
-└── annotations/
-    ├── annotations_answer1.jsonl
-    └── qa_evaluation_instruction.txt
-```
-
-YAML path:
-
-```yaml
-dataset_path: ${LOCAL_DATA_ROOT}/halueval_eval_9708
-```
-
-#### POPE-AOKVQA
-
-Related task:
-
-```text
-pope_aokvqa
-```
-
-Expected structure:
-
-```text
-${LOCAL_DATA_ROOT}/coco/
-├── images/
-│   └── val2014/
-│       └── COCO_val2014_*.jpg
-└── pope_aokvqa_annotations/
-    └── aokvqa_pope.jsonl
-```
-
-YAML path:
-
-```yaml
-dataset_path: ${LOCAL_DATA_ROOT}/coco
-```
-
-#### CHAIR Max64
-
-Related task:
-
-```text
-chair_max64
-```
-
-Expected structure:
-
-```text
-${LOCAL_DATA_ROOT}/coco/
-├── images/
-│   └── val2014/
-│       └── COCO_val2014_*.jpg
-├── chair_annotations/
-│   └── annotations_coco_500.jsonl
-└── annotations/
-    ├── captions_train2014.json
-    ├── captions_val2014.json
-    ├── instances_train2014.json
-    └── instances_val2014.json
-```
-
-YAML path:
-
-```yaml
-dataset_path: ${LOCAL_DATA_ROOT}/coco
-```
+Download the Val 2014 images from the official COCO website and place them under
+`data/coco/images`.
 
 ## 🚀 Inference
 

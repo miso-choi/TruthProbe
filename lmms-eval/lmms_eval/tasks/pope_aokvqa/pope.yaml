@@ -1,4 +1,4 @@
-dataset_path: /root/Desktop/workspace/miso/hub/datasets/lavis/coco
+dataset_path: ${LOCAL_DATA_ROOT}/coco
 dataset_name: null
 dataset_kwargs:
   data_files: {"default": "pope_aokvqa_annotations/aokvqa_pope.jsonl"} 

@@ -37,7 +37,10 @@ def _load_config():
         raw_data = f.readlines()
         # Remove function definitions since yaml load cannot handle them
         safe_data = [line for line in raw_data if "!function" not in line]
-        return yaml.safe_load("".join(safe_data))
+        config = yaml.safe_load("".join(safe_data))
+        if isinstance(config.get("dataset_path"), str):
+            config["dataset_path"] = os.path.expandvars(config["dataset_path"])
+        return config
 
 config = _load_config()
 dataset_path = config["dataset_path"]

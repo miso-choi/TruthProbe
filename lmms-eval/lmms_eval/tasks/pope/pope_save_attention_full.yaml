@@ -1,5 +1,0 @@
-group: pope_save_attention_full
-task:
-  - pope_adv_save_attention
-  - pope_pop_save_attention
-  - pope_random_save_attention

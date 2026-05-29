@@ -15,7 +15,7 @@ with open(Path(__file__).parent / "halueval_remain.yaml", "r") as f:
             safe_data.append(line)
     
     config = yaml.safe_load("".join(safe_data))
-    dataset_path = config["dataset_path"]
+    dataset_path = os.path.expandvars(config["dataset_path"])
     use_instruction = config["metadata"]["use_instruction"]
     use_knowledge = config["metadata"]["use_knowledge"]
 

@@ -2,6 +2,7 @@ export HF_HOME=/workspace/.cache/huggingface
 export HUGGINGFACE_HUB_CACHE=/workspace/.cache/huggingface/hub
 export HF_DATASETS_CACHE=/workspace/.cache/huggingface/datasets
 export TRANSFORMERS_CACHE=/workspace/.cache/huggingface/transformers
+export LOCAL_DATA_ROOT=/root/Desktop/workspace/miso/hub/datasets/lavis
 
 # Base task yaml: lmms_eval/tasks/chair_max64/chair_max64.yaml
 # Runtime task name/result key: ${TASK_ALIAS}

@@ -6,7 +6,7 @@ import os
 from typing import Dict, List, Any
 
 # Read the YAML configuration to get dataset_path
-with open(Path(__file__).parent / "halueval_answer1_w_k.yaml", "r") as f:
+with open(Path(__file__).parent / "halueval.yaml", "r") as f:
     raw_data = f.readlines()
     safe_data = []
     for i, line in enumerate(raw_data):

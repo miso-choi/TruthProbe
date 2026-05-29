@@ -50,7 +50,7 @@ with open(Path(__file__).parent / "pope.yaml", "r") as f:
             safe_data.append(line)
     
     config = yaml.safe_load("".join(safe_data))
-    dataset_path = config["dataset_path"]
+    dataset_path = os.path.expandvars(config["dataset_path"])
 
 
 def pope_doc_to_visual(doc):

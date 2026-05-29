@@ -624,6 +624,16 @@ def import_function(loader, node):
     return function
 
 
+def expand_env_vars(config):
+    if isinstance(config, dict):
+        return {key: expand_env_vars(value) for key, value in config.items()}
+    if isinstance(config, list):
+        return [expand_env_vars(value) for value in config]
+    if isinstance(config, str):
+        return os.path.expandvars(config)
+    return config
+
+
 def load_yaml_config(yaml_path=None, yaml_config=None, yaml_dir=None, mode="full"):
     if mode == "simple":
         constructor_fn = ignore_constructor
@@ -667,8 +677,8 @@ def load_yaml_config(yaml_path=None, yaml_config=None, yaml_dir=None, mode="full
                 raise ex
 
         final_yaml_config.update(yaml_config)
-        return final_yaml_config
-    return yaml_config
+        return expand_env_vars(final_yaml_config)
+    return expand_env_vars(yaml_config)
 
 
 def regex_replace(string, pattern, repl, count: int = 0):

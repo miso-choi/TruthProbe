@@ -2,6 +2,7 @@ export HF_HOME=/workspace/.cache/huggingface
 export HUGGINGFACE_HUB_CACHE=/workspace/.cache/huggingface/hub
 export HF_DATASETS_CACHE=/workspace/.cache/huggingface/datasets
 export TRANSFORMERS_CACHE=/workspace/.cache/huggingface/transformers
+export LOCAL_DATA_ROOT=/root/Desktop/workspace/miso/hub/datasets/lavis
 export PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True
 
 INTERNLM3_MODEL_ARGS="pretrained=internlm/internlm3-8b-instruct,attn_implementation=eager,image_max_num=4,clear_cuda_cache_each_step=True"

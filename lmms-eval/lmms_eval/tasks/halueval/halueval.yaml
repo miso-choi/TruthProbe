@@ -1,10 +1,10 @@
 dataset_path: /root/Desktop/workspace/miso/hub/datasets/lavis/halueval 
 dataset_name: null
 dataset_kwargs:
-  data_files: {"default": "annotations/annotations_answer1.jsonl"}
+  data_files: {"default": "annotations/annotations_answer.jsonl"}
   # data_files: "final_target_.jsonl"
   token: True
-task: "halueval_answer1_wo_k"
+task: "halueval_answer1_w_k"
 test_split: default 
 output_type: generate_until
 # doc_to_visual: !function utils.halueval_doc_to_visual
@@ -44,4 +44,4 @@ lmms_eval_specific_kwargs:
 metadata:
   version: 0.0
   use_instruction: false
-  use_knowledge: false
+  use_knowledge: true

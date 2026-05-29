@@ -1,14 +1,12 @@
-dataset_path: /root/Desktop/workspace/miso/hub/datasets/lavis/halueval_eval_9708
+dataset_path: ${LOCAL_DATA_ROOT}/halueval_eval_9708
 dataset_name: null
 dataset_kwargs:
   data_files: {"default": "annotations/annotations_answer1.jsonl"}
-  # data_files: "final_target_.jsonl"
   token: True
 task: "halueval_remain"
 test_split: default 
 output_type: generate_until
 process_docs: !function utils.process_docs
-# doc_to_visual: !function utils.halueval_doc_to_visual
 doc_to_text: !function utils.halueval_doc_to_text
 doc_to_target: "answer"
 generation_kwargs:
