@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>The Truth Stays in the Family | ICML 2026</title>
+  <meta name="description" content="TruthProbe: Enhancing Contextual Truthfulness via Inherited Heads in Model Lineages. ICML 2026.">
+
+  <meta property="og:title" content="The Truth Stays in the Family: Enhancing Contextual Truthfulness via Inherited Heads in Model Lineages">
+  <meta property="og:description" content="Truth Scores of attention heads are inherited across model lineages. We propose TruthProbe, a soft-gating strategy that improves contextual truthfulness in LLMs and MLLMs.">
+  <meta property="og:image" content="static/images/teaser.png">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🧬</text></svg>">
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="static/css/index.css">
+</head>
+<body>
+
+<!-- ============ HERO / HEADER ============ -->
+<section class="hero publication-hero">
+  <div class="container has-text-centered">
+    <span class="venue-badge">ICML 2026 &middot; Seoul, South Korea</span>
+    <h1 class="publication-title">The Truth Stays in the Family:<br>Enhancing Contextual Truthfulness via Inherited Heads in Model Lineages</h1>
+
+    <div class="author-block">
+      <a href="#">Miso Choi</a><sup>1</sup> &nbsp;
+      <a href="#">Seonga Choi</a><sup>1</sup> &nbsp;
+      <a href="#">Mincheol Kwon</a><sup>1</sup> &nbsp;
+      <a href="#">Woosung Joung</a><sup>1</sup> &nbsp;
+      <a href="#">Jinkyu Kim</a><sup>1,2</sup> &nbsp;
+      <a href="#">Jungbeom Lee</a><sup>1,&#8224;</sup>
+    </div>
+    <div class="affil-block">
+      <sup>1</sup>Korea University, Seoul, Republic of Korea &nbsp;&nbsp; <sup>2</sup>Kakao Mobility Corp., Seongnam, Republic of Korea
+    </div>
+    <div class="corresponding-note">&#8224; Correspondence: jbeomlee@korea.ac.kr</div>
+
+    <div class="link-buttons">
+      <a class="button is-dark-cta" href="static/pdf/TruthProbe_ICML2026.pdf" target="_blank" rel="noopener">
+        <span class="icon"><i class="fa-solid fa-file-pdf"></i></span>
+        <span>Paper (PDF)</span>
+      </a>
+      <a class="button" href="https://github.com/miso-choi/TruthProbe" target="_blank" rel="noopener">
+        <span class="icon"><i class="fa-brands fa-github"></i></span>
+        <span>Code</span>
+      </a>
+      <a class="button" href="#bibtex">
+        <span class="icon"><i class="fa-solid fa-quote-right"></i></span>
+        <span>BibTeX</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TEASER FIGURE ============ -->
+<section class="content-section">
+  <div class="container">
+    <div class="figure-frame">
+      <img src="static/images/teaser.png" alt="Overview of inheritance of context-truthful heads and the TruthProbe soft-gating mechanism">
+      <p class="figure-caption">
+        <b>Truthfulness traits are inherited across model lineages.</b>
+        <b>(1)</b> Head-level Truth Score heatmaps show that fine-tuned MLLMs (LLaVA-1.5, LLaVA-NeXT, Qwen2.5-VL-Instruct, Qwen2.5-VL-Omni) preserve the truthfulness structure of their foundational LLMs (Vicuna-7B, Qwen2.5).
+        <b>(2)</b> TruthProbe amplifies context-truthful heads via a soft gate <i>g<sub>l</sub><sup>h</sup></i> on the residual pathway, without discarding the contribution of any head.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ABSTRACT ============ -->
+<section class="content-section">
+  <div class="container">
+    <h2 class="section-title">Abstract</h2>
+    <p class="abstract-text">
+      Recent advances in large language models (LLMs) have produced many specialized multimodal LLMs (MLLMs) that share common foundational LLMs, forming distinct model lineages. It remains unclear whether a fundamental behavioral link exists between the foundational LLMs and downstream variants. We investigate this question by quantifying head-level context-truthfulness scores. Across diverse LLM and MLLM lineages, including Vicuna-, Qwen2.5-, LLaMA2-, and Mistral-based models, we find that Truth Scores are strongly preserved within model families, even after instruction tuning or multimodal adaptation. We further show that this inheritance is consistent with attention-head weight preservation, and that context-truthful heads attend to query-relevant evidence. Building on this finding, we propose <b>TruthProbe</b>, a soft-gating strategy that amplifies context-truthful heads while preserving other head contributions. TruthProbe improves contextual truthfulness on HaluEval and reduces multimodal hallucination on POPE and CHAIR, with base-LLM Truth Scores transferring effectively to their fine-tuned LLM and MLLM descendants.
+    </p>
+  </div>
+</section>
+
+<!-- ============ KEY FINDINGS ============ -->
+<section class="content-section">
+  <div class="container">
+    <h2 class="section-title">Key Findings</h2>
+    <div class="columns">
+      <div class="column is-4">
+        <div class="finding-card">
+          <span class="tag-num">1</span>
+          <p><b>Truthful heads are inherited within model families.</b> Truth Scores of base LLMs correlate strongly (0.77&ndash;0.98) with their multimodal descendants &mdash; even under cross-dataset probing &mdash; while unrelated families (e.g., Mistral-7B) show near-zero correlation (0.04&ndash;0.08) with Vicuna-7B.</p>
+        </div>
+      </div>
+      <div class="column is-4">
+        <div class="finding-card">
+          <span class="tag-num">2</span>
+          <p><b>Inheritance follows weight preservation.</b> Within-family fine-tuning induces minor attention-head weight drift (Frobenius norm &asymp; 0.03), while cross-family drift is far larger (&asymp; 1.01), explaining why truthfulness structure is preserved in a lineage.</p>
+        </div>
+      </div>
+      <div class="column is-4">
+        <div class="finding-card">
+          <span class="tag-num">3</span>
+          <p><b>Truthful heads attend to query-relevant evidence.</b> Top truthful heads show semantically meaningful, query-dependent attention over visual regions, whereas non-truthful heads exhibit largely position-dependent, query-agnostic patterns.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="figure-frame mt-5">
+      <img src="static/images/fig1_correlation.png" alt="Correlation of Truth Scores under single- and cross-dataset probing">
+      <p class="figure-caption">
+        <b>Correlation of Truth Scores under single- and cross-dataset probing.</b> <i>Left:</i> Within the same model family, Truth Scores remain highly correlated between base LLMs and their multimodal descendants across different probing setups. <i>Right:</i> This alignment persists under cross-dataset probing within the Vicuna family, whereas the unrelated Mistral-7B shows near-zero correlation.
+      </p>
+    </div>
+
+    <div class="figure-frame mt-5">
+      <img src="static/images/fig2_3_weightdrift.png" alt="Layer-wise and aggregate weight drift comparison">
+      <p class="figure-caption">
+        <b>Mechanistic evidence: inheritance follows weight preservation.</b> <i>Left/middle:</i> layer-wise Frobenius norm of weight differences between Vicuna-7B and its multimodal variants &mdash; drift concentrates in early layers. <i>Right:</i> within-family weight drift (Vicuna-7B &rarr; LLaVA-1.5/NeXT) is roughly 30&times; smaller than cross-family drift (Vicuna-7B vs. Mistral-7B).
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ METHOD ============ -->
+<section class="content-section">
+  <div class="container">
+    <h2 class="section-title">TruthProbe: Soft Head Gating</h2>
+    <p class="abstract-text">
+      Building on the inheritance property above, we introduce <b>TruthProbe</b>: a lightweight, plug-and-play soft-gating strategy that reweights the residual contribution of each attention head in proportion to its Truth Score. Unlike hard masking, which discards information from untrusted heads, TruthProbe preserves the expressive capacity of multi-head attention while softly steering the residual stream toward context-faithful signals.
+    </p>
+    <div class="method-eq">
+      x<sub>l+1</sub> = x<sub>l</sub> + Concat<sup>H</sup><sub>h=1</sub> (g<sub>l</sub><sup>h</sup> &middot; o<sub>l</sub><sup>h</sup>) &nbsp;&nbsp;&nbsp;&nbsp; g<sub>l</sub><sup>h</sup> = 1 + &lambda; &middot; norm(S)
+    </div>
+    <p class="abstract-text">
+      Here <i>g<sub>l</sub><sup>h</sup></i> is the soft gate for head <i>h</i> at layer <i>l</i>, parameterized by the normalized Truth Score <i>S</i> and scaled by <i>&lambda;</i>. Heads with higher Truth Scores are amplified beyond baseline, while less informative heads are relatively attenuated &mdash; all heads remain active throughout. Crucially, Truth Scores estimated once from a <b>base LLM</b> can be reused as a plug-and-play gate for its fine-tuned LLM and MLLM descendants, without probing each downstream model from scratch.
+    </p>
+  </div>
+</section>
+
+<!-- ============ RESULTS ============ -->
+<section class="content-section">
+  <div class="container">
+    <h2 class="section-title">Results</h2>
+
+    <div class="results-table-wrap">
+      <table class="results-table">
+        <caption>Table 1 &middot; Validation of Truth Scores on HaluEval (LLMs, self-probed)</caption>
+        <thead>
+          <tr><th>Model</th><th>Acc</th><th>F1</th><th>Prec</th><th>Rec</th></tr>
+        </thead>
+        <tbody>
+          <tr class="model-row"><td colspan="5">Vicuna-7B</td></tr>
+          <tr><td>Baseline</td><td>38.89</td><td>13.37</td><td>22.93</td><td>9.44</td></tr>
+          <tr><td>+ TruthProbe<sub>LLM</sub></td><td>38.53</td><td class="best">29.15</td><td class="best">34.38</td><td class="best">25.30</td></tr>
+          <tr class="model-row"><td colspan="5">Qwen2.5</td></tr>
+          <tr><td>Baseline</td><td>27.65</td><td>36.69</td><td>32.60</td><td>41.96</td></tr>
+          <tr><td>+ TruthProbe<sub>LLM</sub></td><td class="best">35.04</td><td class="best">46.54</td><td class="best">39.52</td><td class="best">56.59</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="results-table-wrap">
+      <table class="results-table">
+        <caption>Table 4 &middot; TruthProbe on Fine-tuned LLMs, HaluEval (Truth Scores transferred from base LLM)</caption>
+        <thead>
+          <tr><th>Model</th><th>Acc</th><th>F1</th><th>Prec</th><th>Rec</th></tr>
+        </thead>
+        <tbody>
+          <tr class="model-row"><td colspan="5">Qwen2.5-7B-Instruct (base: Qwen2.5-7B)</td></tr>
+          <tr><td>Baseline</td><td>34.90</td><td>16.29</td><td>22.79</td><td>12.68</td></tr>
+          <tr><td>+ TruthProbe<sub>Base LLM</sub></td><td class="best">37.35</td><td class="best">17.24</td><td class="best">25.36</td><td class="best">13.05</td></tr>
+          <tr class="model-row"><td colspan="5">Vicuna-7B (base: LLaMA2-7B)</td></tr>
+          <tr><td>Baseline</td><td>38.89</td><td>13.37</td><td>22.93</td><td>9.44</td></tr>
+          <tr><td>+ TruthProbe<sub>Base LLM</sub></td><td class="best">48.47</td><td class="best">57.17</td><td class="best">48.90</td><td class="best">68.82</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="results-table-wrap">
+      <table class="results-table">
+        <caption>Table 2 &middot; TruthProbe on Fine-tuned MLLMs, POPE (Acc / F1 / Recall)</caption>
+        <thead>
+          <tr><th>Model</th><th colspan="3">POPE (COCO)</th><th colspan="3">POPE (A-OKVQA)</th></tr>
+        </thead>
+        <tbody>
+          <tr class="model-row"><td colspan="7">LLaVA-1.5 &nbsp;<span style="font-weight:400; text-transform:none; color:#8a86a3;">(base: Vicuna-7B)</span></td></tr>
+          <tr><td>Baseline</td><td>86.9</td><td>85.8</td><td>79.1</td><td>86.3</td><td>86.5</td><td>87.8</td></tr>
+          <tr><td>+ TruthProbe<sub>LLM</sub></td><td>86.7</td><td>85.8</td><td>80.1</td><td>85.7</td><td>86.3</td><td class="best">90.1</td></tr>
+          <tr><td>+ TruthProbe<sub>MLLM</sub></td><td>86.8</td><td>85.8</td><td>79.6</td><td>86.1</td><td>86.5</td><td>89.0</td></tr>
+          <tr class="model-row"><td colspan="7">LLaVA-NeXT &nbsp;<span style="font-weight:400; text-transform:none; color:#8a86a3;">(base: Vicuna-7B)</span></td></tr>
+          <tr><td>Baseline</td><td>87.7</td><td>86.5</td><td>78.8</td><td>87.4</td><td>87.4</td><td>86.8</td></tr>
+          <tr><td>+ TruthProbe<sub>LLM</sub></td><td class="best">88.3</td><td class="best">87.3</td><td class="best">80.9</td><td>87.7</td><td class="best">88.0</td><td class="best">89.7</td></tr>
+          <tr><td>+ TruthProbe<sub>MLLM</sub></td><td>88.2</td><td>87.2</td><td>80.1</td><td class="best">87.7</td><td>87.9</td><td>89.5</td></tr>
+          <tr class="model-row"><td colspan="7">Qwen2.5-VL-Instruct &nbsp;<span style="font-weight:400; text-transform:none; color:#8a86a3;">(base: Qwen2.5)</span></td></tr>
+          <tr><td>Baseline</td><td>87.6</td><td>86.3</td><td>78.2</td><td>87.4</td><td>87.2</td><td>86.0</td></tr>
+          <tr><td>+ TruthProbe<sub>LLM</sub></td><td class="best">88.1</td><td class="best">87.0</td><td>79.9</td><td class="best">87.8</td><td class="best">87.8</td><td class="best">87.7</td></tr>
+          <tr><td>+ TruthProbe<sub>MLLM</sub></td><td class="best">88.1</td><td class="best">87.0</td><td class="best">80.0</td><td>87.7</td><td>87.7</td><td>87.4</td></tr>
+          <tr class="model-row"><td colspan="7">Qwen2.5-VL-Omni &nbsp;<span style="font-weight:400; text-transform:none; color:#8a86a3;">(base: Qwen2.5)</span></td></tr>
+          <tr><td>Baseline</td><td>85.1</td><td>84.7</td><td>75.0</td><td>87.0</td><td>87.4</td><td>84.7</td></tr>
+          <tr><td>+ TruthProbe<sub>LLM</sub></td><td class="best">87.3</td><td class="best">86.0</td><td class="best">77.7</td><td class="best">87.8</td><td class="best">87.8</td><td class="best">87.1</td></tr>
+          <tr><td>+ TruthProbe<sub>MLLM</sub></td><td>87.1</td><td>85.7</td><td>77.3</td><td>87.7</td><td>87.6</td><td>86.7</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="results-table-wrap">
+      <table class="results-table">
+        <caption>Table 3 &middot; TruthProbe on Fine-tuned MLLMs, CHAIR (&darr; lower is better)</caption>
+        <thead>
+          <tr><th>Model</th><th>CHAIR<sub>I</sub></th><th>CHAIR<sub>S</sub></th></tr>
+        </thead>
+        <tbody>
+          <tr class="model-row"><td colspan="3">LLaVA-1.5</td></tr>
+          <tr><td>Baseline</td><td>6.99</td><td>23.00</td></tr>
+          <tr><td>+ TruthProbe<sub>LLM</sub></td><td class="best">5.36</td><td class="best">17.40</td></tr>
+          <tr><td>+ TruthProbe<sub>MLLM</sub></td><td>6.20</td><td>21.60</td></tr>
+          <tr class="model-row"><td colspan="3">LLaVA-NeXT</td></tr>
+          <tr><td>Baseline</td><td>6.91</td><td>13.40</td></tr>
+          <tr><td>+ TruthProbe<sub>LLM</sub></td><td class="best">4.94</td><td class="best">11.20</td></tr>
+          <tr><td>+ TruthProbe<sub>MLLM</sub></td><td>6.56</td><td>12.60</td></tr>
+          <tr class="model-row"><td colspan="3">Qwen2.5-VL-Instruct</td></tr>
+          <tr><td>Baseline</td><td>6.14</td><td>13.20</td></tr>
+          <tr><td>+ TruthProbe<sub>LLM</sub></td><td>5.56</td><td>12.20</td></tr>
+          <tr><td>+ TruthProbe<sub>MLLM</sub></td><td class="best">5.26</td><td class="best">7.80</td></tr>
+          <tr class="model-row"><td colspan="3">Qwen2.5-VL-Omni</td></tr>
+          <tr><td>Baseline</td><td class="best">5.26</td><td>11.40</td></tr>
+          <tr><td>+ TruthProbe<sub>LLM</sub></td><td>5.94</td><td>10.80</td></tr>
+          <tr><td>+ TruthProbe<sub>MLLM</sub></td><td>5.54</td><td class="best">11.00</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="figure-caption has-text-centered">Bold = best per model group. TruthProbe<sub>LLM</sub>/TruthProbe<sub>Base&nbsp;LLM</sub> use Truth Scores transferred from the base LLM; TruthProbe<sub>MLLM</sub> uses Truth Scores probed directly from the MLLM itself &mdash; the two are consistently comparable, confirming transferability.</p>
+  </div>
+</section>
+
+<!-- ============ ATTENTION ANALYSIS ============ -->
+<section class="content-section">
+  <div class="container">
+    <h2 class="section-title">Why Truthful Heads Matter: Attention Analysis</h2>
+    <p class="abstract-text">
+      Using relative attention maps to remove attention-sink artifacts, we compare the Top-3 truthful heads against the Bottom-3 non-truthful heads in LLaVA-1.5. Truthful heads exhibit <b>semantically meaningful, query-dependent</b> attention &mdash; focusing on the referenced object or person &mdash; while non-truthful heads show largely <b>position-dependent</b>, diagonal/striped attention that barely changes across queries.
+    </p>
+    <div class="figure-frame mt-4">
+      <img src="static/images/fig5_attention.png" alt="Attention pattern comparison between truthful and non-truthful heads">
+      <p class="figure-caption">
+        <b>Attention pattern comparison between truthful and non-truthful heads.</b> Left three columns: Top-3 truthful heads. Right three columns: Bottom-3 non-truthful heads. Row 1: 24&times;24 attention maps from the final query token to visual tokens. Row 2: attention overlaid on the image.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ BIBTEX ============ -->
+<section class="content-section" id="bibtex">
+  <div class="container">
+    <h2 class="section-title">BibTeX</h2>
+    <div class="bibtex-box">
+      <button class="copy-btn" id="copy-btn" onclick="copyBibtex()">Copy</button>
+      <code id="bibtex-content">@inproceedings{choi2026truth,
+  title     = {The Truth Stays in the Family: Enhancing Contextual Truthfulness via Inherited Heads in Model Lineages},
+  author    = {Choi, Miso and Choi, Seonga and Kwon, Mincheol and Joung, Woosung and Kim, Jinkyu and Lee, Jungbeom},
+  booktitle = {Proceedings of the 43rd International Conference on Machine Learning (ICML)},
+  series    = {Proceedings of Machine Learning Research},
+  volume    = {306},
+  year      = {2026},
+  publisher = {PMLR},
+  address   = {Seoul, South Korea}
+}</code>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="site-footer">
+  <p>
+    Code available at <a href="https://github.com/miso-choi/TruthProbe" target="_blank" rel="noopener">github.com/miso-choi/TruthProbe</a>
+  </p>
+  <p style="margin-top: 0.5rem; opacity: 0.75;">
+    &copy; 2026 Miso Choi, Seonga Choi, Mincheol Kwon, Woosung Joung, Jinkyu Kim, Jungbeom Lee &middot; Korea University
+  </p>
+  <p style="margin-top: 0.5rem; opacity: 0.6; font-size: 0.8rem;">
+    This webpage template is adapted from the academic project page format popularized by <a href="https://nerfies.github.io/" target="_blank" rel="noopener">Nerfies</a>.
+  </p>
+</footer>
+
+<script src="static/js/index.js"></script>
+</body>
+</html>
