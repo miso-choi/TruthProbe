@@ -68,6 +68,10 @@ body {
   border-bottom: 1px solid var(--accent);
 }
 
+.author-block span {
+  font-weight: 600;
+}
+
 .affil-block {
   margin-top: 0.5rem;
   color: var(--muted);
