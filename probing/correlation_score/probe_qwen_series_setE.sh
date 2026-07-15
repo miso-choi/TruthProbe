@@ -4,11 +4,11 @@
 set -euo pipefail
 
 # ===== 데이터 경로 =====
-CTX_JSONL="/root/Desktop/workspace/miso/faithful-probing/probing_code/script_camera_ready/probing_data/setE_context_halueval_phd.jsonl"
-IMG_JSONL="/root/Desktop/workspace/miso/faithful-probing/probing_code/script_camera_ready/probing_data/setE_images_rlhfv_phd.jsonl"
+CTX_JSONL="/root/Desktop/workspace/miso/faithful-probing/probing/probing_data/setE_context_halueval_phd.jsonl"
+IMG_JSONL="/root/Desktop/workspace/miso/faithful-probing/probing/probing_data/setE_images_rlhfv_phd.jsonl"
 
 # ===== 스크립트 파일 =====
-PY="/root/Desktop/workspace/miso/faithful-probing/probing_code/script_camera_ready/probe_qwen_series.py"
+PY="/root/Desktop/workspace/miso/faithful-probing/probing/probe_qwen_series.py"
 
 # ===== 모델 =====
 LLM_NAME="Qwen/Qwen2.5-7B"
@@ -25,7 +25,7 @@ TEST_SIZE=0.2
 SEED=42
 # 빠른 테스트는 100 등으로; 전체는 0
 MAX_SAMPLES=0
-OUT_ROOT="/root/Desktop/workspace/miso/faithful-probing/probing_code/script_camera_ready/correlation_score/outputs/qwen_cross_dataset_probing_set_e_cv5"
+OUT_ROOT="/root/Desktop/workspace/miso/faithful-probing/probing/correlation_score/outputs/qwen_cross_dataset_probing_set_e_cv5"
 mkdir -p "${OUT_ROOT}"
 echo "[INFO] Output root -> ${OUT_ROOT}"
 

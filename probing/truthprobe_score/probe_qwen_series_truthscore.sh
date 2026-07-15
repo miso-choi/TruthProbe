@@ -6,12 +6,12 @@ set -euo pipefail
 
 # ===== 데이터 경로 =====
 # HaluEval: setD와 동일한 context jsonl. 앞 292개만 사용 (MAX_SAMPLES_LLM)
-CTX_JSONL="/root/Desktop/workspace/miso/faithful-probing/probing_code/script_camera_ready/probing_data/setD_context_halueval.jsonl"
+CTX_JSONL="/root/Desktop/workspace/miso/faithful-probing/probing/probing_data/setD_context_halueval.jsonl"
 # RLHF-V: setD와 동일한 image jsonl (2,726 rows 전체 사용)
-IMG_JSONL="/root/Desktop/workspace/miso/faithful-probing/probing_code/script_camera_ready/probing_data/setD_images_rlhfv.jsonl"
+IMG_JSONL="/root/Desktop/workspace/miso/faithful-probing/probing/probing_data/setD_images_rlhfv.jsonl"
 
 # ===== 스크립트 파일 =====
-PY="/root/Desktop/workspace/miso/faithful-probing/probing_code/script_camera_ready/probe_qwen_series.py"
+PY="/root/Desktop/workspace/miso/faithful-probing/probing/probe_qwen_series.py"
 
 # ===== 모델 =====
 LLM_NAME="Qwen/Qwen2.5-7B"
@@ -27,7 +27,7 @@ TEST_SIZE=0.2
 SEED=42
 MAX_SAMPLES_LLM=292   # HaluEval: 292개만 사용
 MAX_SAMPLES_VLM=0     # RLHF-V: 전체(2,726개) 사용
-OUT_ROOT="/root/Desktop/workspace/miso/faithful-probing/probing_code/script_camera_ready/truthprobe_score/outputs/qwen_truthprobe_score"
+OUT_ROOT="/root/Desktop/workspace/miso/faithful-probing/probing/truthprobe_score/outputs/qwen_truthprobe_score"
 mkdir -p "${OUT_ROOT}"
 echo "[INFO] Output root -> ${OUT_ROOT}"
 
