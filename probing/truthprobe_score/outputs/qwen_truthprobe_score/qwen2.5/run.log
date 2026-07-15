@@ -1,0 +1,56 @@
+/workspace/miso/faithful-lmms-eval/LLaVA-NeXT/transformers-4.53.2/src/transformers/utils/hub.py:111: FutureWarning: Using `TRANSFORMERS_CACHE` is deprecated and will be removed in v5 of Transformers. Use `HF_HOME` instead.
+  warnings.warn(
+🚨 `gate_truthful_head` is part of Qwen2_5OmniThinkerTextModel.forward's signature, but not documented. Make sure to add it to the docstring of the function in /workspace/miso/faithful-lmms-eval/LLaVA-NeXT/transformers-4.53.2/src/transformers/models/qwen2_5_omni/modeling_qwen2_5_omni.py.
+🚨 `truthful_head` is part of Qwen2_5OmniThinkerTextModel.forward's signature, but not documented. Make sure to add it to the docstring of the function in /workspace/miso/faithful-lmms-eval/LLaVA-NeXT/transformers-4.53.2/src/transformers/models/qwen2_5_omni/modeling_qwen2_5_omni.py.
+🚨 `selected_heads` is part of Qwen2_5OmniThinkerTextModel.forward's signature, but not documented. Make sure to add it to the docstring of the function in /workspace/miso/faithful-lmms-eval/LLaVA-NeXT/transformers-4.53.2/src/transformers/models/qwen2_5_omni/modeling_qwen2_5_omni.py.
+🚨 `hyperparams` is part of Qwen2_5OmniThinkerTextModel.forward's signature, but not documented. Make sure to add it to the docstring of the function in /workspace/miso/faithful-lmms-eval/LLaVA-NeXT/transformers-4.53.2/src/transformers/models/qwen2_5_omni/modeling_qwen2_5_omni.py.
+🚨 `gate_truthful_head` is part of Qwen2_5OmniThinkerForConditionalGeneration.forward's signature, but not documented. Make sure to add it to the docstring of the function in /workspace/miso/faithful-lmms-eval/LLaVA-NeXT/transformers-4.53.2/src/transformers/models/qwen2_5_omni/modeling_qwen2_5_omni.py.
+🚨 `truthful_head` is part of Qwen2_5OmniThinkerForConditionalGeneration.forward's signature, but not documented. Make sure to add it to the docstring of the function in /workspace/miso/faithful-lmms-eval/LLaVA-NeXT/transformers-4.53.2/src/transformers/models/qwen2_5_omni/modeling_qwen2_5_omni.py.
+🚨 `selected_heads` is part of Qwen2_5OmniThinkerForConditionalGeneration.forward's signature, but not documented. Make sure to add it to the docstring of the function in /workspace/miso/faithful-lmms-eval/LLaVA-NeXT/transformers-4.53.2/src/transformers/models/qwen2_5_omni/modeling_qwen2_5_omni.py.
+🚨 `hyperparams` is part of Qwen2_5OmniThinkerForConditionalGeneration.forward's signature, but not documented. Make sure to add it to the docstring of the function in /workspace/miso/faithful-lmms-eval/LLaVA-NeXT/transformers-4.53.2/src/transformers/models/qwen2_5_omni/modeling_qwen2_5_omni.py.
+[INFO] device: cuda
+🚨 `gate_truthful_head` is part of Qwen2Model.forward's signature, but not documented. Make sure to add it to the docstring of the function in /workspace/miso/faithful-lmms-eval/LLaVA-NeXT/transformers-4.53.2/src/transformers/models/qwen2/modeling_qwen2.py.
+🚨 `truthful_head` is part of Qwen2Model.forward's signature, but not documented. Make sure to add it to the docstring of the function in /workspace/miso/faithful-lmms-eval/LLaVA-NeXT/transformers-4.53.2/src/transformers/models/qwen2/modeling_qwen2.py.
+🚨 `selected_heads` is part of Qwen2Model.forward's signature, but not documented. Make sure to add it to the docstring of the function in /workspace/miso/faithful-lmms-eval/LLaVA-NeXT/transformers-4.53.2/src/transformers/models/qwen2/modeling_qwen2.py.
+🚨 `hyperparams` is part of Qwen2Model.forward's signature, but not documented. Make sure to add it to the docstring of the function in /workspace/miso/faithful-lmms-eval/LLaVA-NeXT/transformers-4.53.2/src/transformers/models/qwen2/modeling_qwen2.py.
+🚨 `gate_truthful_head` is part of Qwen2ForCausalLM.forward's signature, but not documented. Make sure to add it to the docstring of the function in /workspace/miso/faithful-lmms-eval/LLaVA-NeXT/transformers-4.53.2/src/transformers/models/qwen2/modeling_qwen2.py.
+🚨 `truthful_head` is part of Qwen2ForCausalLM.forward's signature, but not documented. Make sure to add it to the docstring of the function in /workspace/miso/faithful-lmms-eval/LLaVA-NeXT/transformers-4.53.2/src/transformers/models/qwen2/modeling_qwen2.py.
+🚨 `selected_heads` is part of Qwen2ForCausalLM.forward's signature, but not documented. Make sure to add it to the docstring of the function in /workspace/miso/faithful-lmms-eval/LLaVA-NeXT/transformers-4.53.2/src/transformers/models/qwen2/modeling_qwen2.py.
+🚨 `hyperparams` is part of Qwen2ForCausalLM.forward's signature, but not documented. Make sure to add it to the docstring of the function in /workspace/miso/faithful-lmms-eval/LLaVA-NeXT/transformers-4.53.2/src/transformers/models/qwen2/modeling_qwen2.py.
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:01<00:03,  1.15s/it]Loading checkpoint shards:  50%|█████     | 2/4 [00:02<00:02,  1.12s/it]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:03<00:01,  1.09s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:04<00:00,  1.03s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:04<00:00,  1.06s/it]
+[INFO] Loaded 10000 rows from /root/Desktop/workspace/miso/faithful-probing/probing_code/script_camera_ready/probing_data/setD_context_halueval.jsonl
+[INFO] Kept 292 usable samples
+Collect (LLM):   0%|          | 0/292 [00:00<?, ?it/s]Collect (LLM):   0%|          | 1/292 [00:00<01:50,  2.64it/s]Collect (LLM):   1%|▏         | 4/292 [00:00<00:30,  9.40it/s]Collect (LLM):   2%|▏         | 7/292 [00:00<00:19, 14.88it/s]Collect (LLM):   3%|▎         | 10/292 [00:00<00:14, 18.83it/s]Collect (LLM):   4%|▍         | 13/292 [00:00<00:12, 21.85it/s]Collect (LLM):   6%|▌         | 17/292 [00:00<00:11, 24.89it/s]Collect (LLM):   7%|▋         | 21/292 [00:01<00:10, 26.97it/s]Collect (LLM):   9%|▊         | 25/292 [00:01<00:09, 28.43it/s]Collect (LLM):  10%|▉         | 29/292 [00:01<00:09, 29.06it/s]Collect (LLM):  11%|█▏        | 33/292 [00:01<00:08, 29.59it/s]Collect (LLM):  13%|█▎        | 37/292 [00:01<00:08, 30.41it/s]Collect (LLM):  14%|█▍        | 41/292 [00:01<00:08, 30.23it/s]Collect (LLM):  15%|█▌        | 45/292 [00:01<00:08, 30.23it/s]Collect (LLM):  17%|█▋        | 49/292 [00:01<00:07, 30.51it/s]Collect (LLM):  18%|█▊        | 53/292 [00:02<00:07, 30.68it/s]Collect (LLM):  20%|█▉        | 57/292 [00:02<00:07, 30.64it/s]Collect (LLM):  21%|██        | 61/292 [00:02<00:07, 29.63it/s]Collect (LLM):  22%|██▏       | 65/292 [00:02<00:07, 29.94it/s]Collect (LLM):  24%|██▎       | 69/292 [00:02<00:07, 30.26it/s]Collect (LLM):  25%|██▌       | 73/292 [00:02<00:07, 30.30it/s]Collect (LLM):  26%|██▋       | 77/292 [00:02<00:07, 30.49it/s]Collect (LLM):  28%|██▊       | 81/292 [00:03<00:06, 30.70it/s]Collect (LLM):  29%|██▉       | 85/292 [00:03<00:06, 30.72it/s]Collect (LLM):  30%|███       | 89/292 [00:03<00:06, 31.27it/s]Collect (LLM):  32%|███▏      | 93/292 [00:03<00:06, 31.55it/s]Collect (LLM):  33%|███▎      | 97/292 [00:03<00:06, 31.75it/s]Collect (LLM):  35%|███▍      | 101/292 [00:03<00:06, 31.80it/s]Collect (LLM):  36%|███▌      | 105/292 [00:03<00:05, 31.98it/s]Collect (LLM):  37%|███▋      | 109/292 [00:03<00:05, 31.34it/s]Collect (LLM):  39%|███▊      | 113/292 [00:04<00:05, 30.91it/s]Collect (LLM):  40%|████      | 117/292 [00:04<00:05, 31.05it/s]Collect (LLM):  41%|████▏     | 121/292 [00:04<00:05, 30.81it/s]Collect (LLM):  43%|████▎     | 125/292 [00:04<00:05, 30.98it/s]Collect (LLM):  44%|████▍     | 129/292 [00:04<00:05, 31.02it/s]Collect (LLM):  46%|████▌     | 133/292 [00:04<00:05, 31.37it/s]Collect (LLM):  47%|████▋     | 137/292 [00:04<00:04, 31.58it/s]Collect (LLM):  48%|████▊     | 141/292 [00:04<00:04, 31.69it/s]Collect (LLM):  50%|████▉     | 145/292 [00:05<00:04, 31.75it/s]Collect (LLM):  51%|█████     | 149/292 [00:05<00:04, 31.76it/s]Collect (LLM):  52%|█████▏    | 153/292 [00:05<00:04, 31.41it/s]Collect (LLM):  54%|█████▍    | 157/292 [00:05<00:04, 31.68it/s]Collect (LLM):  55%|█████▌    | 161/292 [00:05<00:04, 31.85it/s]Collect (LLM):  57%|█████▋    | 165/292 [00:05<00:04, 31.74it/s]Collect (LLM):  58%|█████▊    | 169/292 [00:05<00:03, 31.51it/s]Collect (LLM):  59%|█████▉    | 173/292 [00:05<00:03, 31.57it/s]Collect (LLM):  61%|██████    | 177/292 [00:06<00:03, 32.09it/s]Collect (LLM):  62%|██████▏   | 181/292 [00:06<00:03, 31.71it/s]Collect (LLM):  63%|██████▎   | 185/292 [00:06<00:03, 31.86it/s]Collect (LLM):  65%|██████▍   | 189/292 [00:06<00:03, 32.40it/s]Collect (LLM):  66%|██████▌   | 193/292 [00:06<00:03, 32.22it/s]Collect (LLM):  67%|██████▋   | 197/292 [00:06<00:02, 32.09it/s]Collect (LLM):  69%|██████▉   | 201/292 [00:06<00:02, 32.23it/s]Collect (LLM):  70%|███████   | 205/292 [00:06<00:02, 32.56it/s]Collect (LLM):  72%|███████▏  | 209/292 [00:07<00:02, 32.63it/s]Collect (LLM):  73%|███████▎  | 213/292 [00:07<00:02, 32.42it/s]Collect (LLM):  74%|███████▍  | 217/292 [00:07<00:02, 31.89it/s]Collect (LLM):  76%|███████▌  | 221/292 [00:07<00:02, 31.72it/s]Collect (LLM):  77%|███████▋  | 225/292 [00:07<00:02, 31.68it/s]Collect (LLM):  78%|███████▊  | 229/292 [00:07<00:02, 31.39it/s]Collect (LLM):  80%|███████▉  | 233/292 [00:07<00:01, 31.84it/s]Collect (LLM):  81%|████████  | 237/292 [00:07<00:01, 31.92it/s]Collect (LLM):  83%|████████▎ | 241/292 [00:08<00:01, 31.55it/s]Collect (LLM):  84%|████████▍ | 245/292 [00:08<00:01, 31.56it/s]Collect (LLM):  85%|████████▌ | 249/292 [00:08<00:01, 31.66it/s]Collect (LLM):  87%|████████▋ | 253/292 [00:08<00:01, 31.80it/s]Collect (LLM):  88%|████████▊ | 257/292 [00:08<00:01, 31.85it/s]Collect (LLM):  89%|████████▉ | 261/292 [00:08<00:00, 31.57it/s]Collect (LLM):  91%|█████████ | 265/292 [00:08<00:00, 31.63it/s]Collect (LLM):  92%|█████████▏| 269/292 [00:08<00:00, 31.86it/s]Collect (LLM):  93%|█████████▎| 273/292 [00:09<00:00, 31.69it/s]Collect (LLM):  95%|█████████▍| 277/292 [00:09<00:00, 31.99it/s]Collect (LLM):  96%|█████████▌| 281/292 [00:09<00:00, 32.11it/s]Collect (LLM):  98%|█████████▊| 285/292 [00:09<00:00, 32.52it/s]Collect (LLM):  99%|█████████▉| 289/292 [00:09<00:00, 32.47it/s]Collect (LLM): 100%|██████████| 292/292 [00:09<00:00, 30.22it/s]
+[INFO] Saved raw -> /root/Desktop/workspace/miso/faithful-probing/probing_code/script_camera_ready/truthprobe_score/outputs/qwen_truthprobe_score/qwen2.5/raw.pt
+Fold 1/5
+[PROBE] 40/200 loss=0.3080
+[PROBE] 80/200 loss=0.2285
+[PROBE] 120/200 loss=0.1886
+[PROBE] 160/200 loss=0.1630
+[PROBE] 200/200 loss=0.1447
+Fold 2/5
+[PROBE] 40/200 loss=0.2975
+[PROBE] 80/200 loss=0.2144
+[PROBE] 120/200 loss=0.1732
+[PROBE] 160/200 loss=0.1471
+[PROBE] 200/200 loss=0.1286
+Fold 3/5
+[PROBE] 40/200 loss=0.3073
+[PROBE] 80/200 loss=0.2265
+[PROBE] 120/200 loss=0.1859
+[PROBE] 160/200 loss=0.1598
+[PROBE] 200/200 loss=0.1413
+Fold 4/5
+[PROBE] 40/200 loss=0.3059
+[PROBE] 80/200 loss=0.2271
+[PROBE] 120/200 loss=0.1874
+[PROBE] 160/200 loss=0.1620
+[PROBE] 200/200 loss=0.1438
+Fold 5/5
+[PROBE] 40/200 loss=0.3090
+[PROBE] 80/200 loss=0.2289
+[PROBE] 120/200 loss=0.1886
+[PROBE] 160/200 loss=0.1627
+[PROBE] 200/200 loss=0.1442
+[INFO] Saved metrics -> /root/Desktop/workspace/miso/faithful-probing/probing_code/script_camera_ready/truthprobe_score/outputs/qwen_truthprobe_score/qwen2.5/cv5_head_metrics.csv
+✅ Done.
