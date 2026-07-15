@@ -12,24 +12,23 @@ probe on attention output activations and report per-head classification metrics
 .
 ├── LLaVA-NeXT/                     # vendored LLaVA-NeXT (VLM inference dependency)
 ├── lmms-eval/                      # vendored lmms-eval (VLM evaluation dependency)
-└── probing_code/
-    └── script_camera_ready/        # entry point for reproducing the paper's results
-        ├── probe_vicuna_series.py  # Vicuna / Mistral / LLaVA-1.5 / LLaVA-NeXT probing
-        ├── probe_qwen_series.py    # Qwen2.5 / Mistral / Qwen2.5-VL-Instruct / Qwen2.5-VL-Omni probing
-        ├── probing_data/           # probing datasets (jsonl)
-        ├── analysis/
-        │   ├── correlation.py      # cross-model truth-score correlation + bar plots
-        │   ├── correlation.sh
-        │   ├── heatmap.py          # per-model (layer, head) truth-score heatmap
-        │   └── heatmap.sh
-        ├── correlation_score/      # Fig. 1: cross-model / cross-dataset truth-score correlation
-        │   ├── probe_{vicuna,qwen}_series_set{A,B,C,D,E}.sh
-        │   └── outputs/            # per-run truth scores (csv)
-        └── truthprobe_score/       # truth-head scores consumed by the TruthProbe method
-            ├── probe_{vicuna,qwen}_series_truthscore.sh
-            └── outputs/
-                ├── vicuna_truthprobe_score/{vicuna,llava1.5,llavanxt}/cv5_head_metrics.csv
-                └── qwen_truthprobe_score/{qwen2.5,qwen2.5_vl_instruct,qwen2.5_vl_omni}/cv5_head_metrics.csv
+└── probing/                        # entry point for reproducing the paper's results
+    ├── probe_vicuna_series.py  # Vicuna / Mistral / LLaVA-1.5 / LLaVA-NeXT probing
+    ├── probe_qwen_series.py    # Qwen2.5 / Mistral / Qwen2.5-VL-Instruct / Qwen2.5-VL-Omni probing
+    ├── probing_data/           # probing datasets (jsonl)
+    ├── analysis/
+    │   ├── correlation.py      # cross-model truth-score correlation + bar plots
+    │   ├── correlation.sh
+    │   ├── heatmap.py          # per-model (layer, head) truth-score heatmap
+    │   └── heatmap.sh
+    ├── correlation_score/      # Fig. 1: cross-model / cross-dataset truth-score correlation
+    │   ├── probe_{vicuna,qwen}_series_set{A,B,C,D,E}.sh
+    │   └── outputs/            # per-run truth scores (csv)
+    └── truthprobe_score/       # truth-head scores consumed by the TruthProbe method
+        ├── probe_{vicuna,qwen}_series_truthscore.sh
+        └── outputs/
+            ├── vicuna_truthprobe_score/{vicuna,llava1.5,llavanxt}/cv5_head_metrics.csv
+            └── qwen_truthprobe_score/{qwen2.5,qwen2.5_vl_instruct,qwen2.5_vl_omni}/cv5_head_metrics.csv
 ```
 
 ## Setup
@@ -77,7 +76,7 @@ names at the top of the script to match your environment, then run with the GPU 
 your choice:
 
 ```bash
-cd probing_code/script_camera_ready
+cd probing
 CUDA_VISIBLE_DEVICES=0 bash correlation_score/probe_vicuna_series_setD.sh
 ```
 
@@ -103,7 +102,7 @@ for MLLM probing (Set D's jsonls, with `MAX_SAMPLES` set accordingly) — rather
 the A–E sweep.
 
 ```bash
-cd probing_code/script_camera_ready
+cd probing
 CUDA_VISIBLE_DEVICES=0 bash truthprobe_score/probe_vicuna_series_truthscore.sh   # Vicuna-7B (LLM) + LLaVA-1.5 / LLaVA-NeXT (MLLM)
 CUDA_VISIBLE_DEVICES=0 bash truthprobe_score/probe_qwen_series_truthscore.sh     # Qwen2.5 (LLM) + Qwen2.5-VL-Instruct / Qwen2.5-VL-Omni (MLLM)
 ```
@@ -118,8 +117,8 @@ Results follow the same per-model-subfolder convention as `correlation_score/`:
 subfolder per model (each with its `cv5_head_metrics.csv`):
 
 ```bash
-python probing_code/script_camera_ready/analysis/correlation.py \
-  --root probing_code/script_camera_ready/correlation_score/outputs/<run_name> \
+python probing/analysis/correlation.py \
+  --root probing/correlation_score/outputs/<run_name> \
   --fname_regex ".*\.csv$" \
   --bar_mode ref --bar_ref qwen2.5
 ```
@@ -132,8 +131,8 @@ output folder (a single csv), since `heatmap.py` names its output folder after t
 csv filename and will overwrite across models if given a shared root:
 
 ```bash
-python probing_code/script_camera_ready/analysis/heatmap.py \
-  --root probing_code/script_camera_ready/correlation_score/outputs/<run_name>/<model>
+python probing/analysis/heatmap.py \
+  --root probing/correlation_score/outputs/<run_name>/<model>
 ```
 
 Output: `<root>/_plots/cv5_head_metrics/cv5_head_metrics_HEAT_CONT.png`.
